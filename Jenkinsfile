@@ -33,13 +33,11 @@ node('maven') {
 
   stage('Build') {
 
-    sh "${mvnCmd} clean install -DskipTests=true -f ${pomFileLocation} -Dhttps.proxy=http://172.31.16.199:80 -Dhttp.proxy=http://172.31.16.199:80"
-  }
+    sh "${mvnCmd} clean install -DskipTests=true -f ${pomFileLocation} -Dhttps.proxyHost=172.31.16.199  -Dhttps.proxyPort=80 -Dhttp.proxyHost=172.31.16.199  -Dhttp.proxyPort=80" }
 
   stage('Unit Test') {
 
-     sh "${mvnCmd} test -f ${pomFileLocation} -Dhttps.proxy=http://172.31.16.199:80 -Dhttp.proxy=http://172.31.16.199:80"
-  }
+     sh "${mvnCmd} test -f ${pomFileLocation} -Dhttps.proxyHost=172.31.16.199  -Dhttps.proxyPort=80 -Dhttp.proxyHost=172.31.16.199  -Dhttp.proxyPort=80"}
 
   // The following variables need to be defined at the top level and not inside
   // the scope of a stage - otherwise they would not be accessible from other stages.
