@@ -33,13 +33,13 @@ node('maven') {
 
   stage('Build') {
 
-    sh "${mvnCmd} clean install -DskipTests=true -f ${pomFileLocation}"
+    sh "${mvnCmd} clean install -DskipTests=true -f ${pomFileLocation} -Dhttp.proxyHost=http://172.31.16.199 -Dhttp.proxyPort=80 -Dhttps.proxyHost=http://172.31.16.199 -Dhttps.proxyPort=80"
 
   }
 
   stage('Unit Test') {
 
-     sh "${mvnCmd} test -f ${pomFileLocation}"
+     sh "${mvnCmd} test -f ${pomFileLocation} -Dhttp.proxyHost=http://172.31.16.199 -Dhttp.proxyPort=80 -Dhttps.proxyHost=http://172.31.16.199 -Dhttps.proxyPort=80"
 
   }
 
